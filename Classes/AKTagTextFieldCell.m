@@ -6,19 +6,35 @@
 //
 
 #import "AKTagTextFieldCell.h"
+
 @implementation AKTagTextFieldCell
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _textField = [[AKTextField alloc] initWithFrame:self.contentView.bounds];
-		_textField.frame = CGRectInset(_textField.frame, 0, 5);
-		_textField.autoresizingMask = UIViewAutoresizingFlexibleHeight  | UIViewAutoresizingFlexibleWidth;
-		_textField.buttonPlaceholder = @"+ Add";
-		_textField.autocorrectionType = UITextAutocorrectionTypeNo;
-		[self.contentView addSubview:_textField];
+        [self setup];
     }
     return self;
 }
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    self.textField = [[AKTextField alloc] initWithFrame:self.contentView.bounds];
+    self.textField.frame = CGRectInset(_textField.frame, 0, 5);
+    self.textField.autoresizingMask = UIViewAutoresizingFlexibleHeight  | UIViewAutoresizingFlexibleWidth;
+    self.textField.buttonPlaceholder = NSLocalizedString(@"+ SOMETHING",@"");
+    self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    [self.contentView addSubview:_textField];
+}
+
 @end
